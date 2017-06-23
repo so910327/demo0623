@@ -17,18 +17,18 @@ consumes:
 # format of the responses to the client (Accepts)
 produces:
   - application/json
-paths:
-  /hello:
+paths: 
+  /addone:
     # binds a127 app logic to a route
-    x-swagger-router-controller: hello_world
+    x-swagger-router-controller: addone
     get:
       description: Returns 'Hello' to the caller
       # used as the method name of the controller
-      operationId: hello
+      operationId: addone
       parameters:
-        - name: name
+        - name: num
           in: query
-          description: The name of the person to whom to say hello
+          #description: The name of the person to whom to say hello
           required: false
           type: string
       responses:
@@ -41,30 +41,7 @@ paths:
         default:
           description: Error
           schema:
-            $ref: "#/definitions/ErrorResponse"
-  /addsum:
-    x-swagger-route-controller: add_sum
-    get:
-      description: Returns 'result' to the caller
-      parameters:
-        - name: num1
-          in: query
-          description: num1
-          type: number
-        - name: num2
-          in: query
-          description: num2
-          type: number  
-    responses:
-      "200":
-        description: Success
-        scheme:
-          $ref: "#/definitions/addsumResponse"
-        default: 
-          description: Error
-          schema:
-          $ref: "#/definitions/ErrorResponse"
-          
+            $ref: "#/definitions/ErrorResponse"           
   /swagger:
     x-swagger-pipe: swagger_raw
 # complex objects have schema definitions
